@@ -45,15 +45,15 @@ res.sendFile(path.join(__dirname + "/public/stats.html"));
 //   });
 // });
 
-// app.get("/all", (req, res) => {
-//   db.notes.find({}, (error, data) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
+app.get("/api/workouts", (req, res) => {
+  db.workouts.find({}, (error, data) => {
+    if (error) {
+      res.send(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
 
 // app.get("/find/:id", (req, res) => {
 //   db.notes.findOne(
