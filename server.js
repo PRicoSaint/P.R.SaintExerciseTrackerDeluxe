@@ -33,17 +33,17 @@ app.get("/stats", (req, res) => {
 res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
-// app.post("/submit", (req, res) => {
-//   console.log(req.body);
+app.post("/api/workouts", (req, res) => {
+  console.log(req.body);
 
-//   db.notes.insert(req.body, (error, data) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.send(data);
-//     }
-//   });
-// });
+  db.workouts.insert({day: Date.now()}, (error, data) => {
+    if (error) {
+      res.send(error);
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 app.get("/api/workouts", (req, res) => {
   db.workouts.find({}, (error, data) => {
@@ -72,7 +72,7 @@ app.get("/api/workouts", (req, res) => {
 // });
 
 app.put("/api/workouts/:id", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
   db.workouts.update(
     {
       _id: mongojs.ObjectId(req.params.id)
