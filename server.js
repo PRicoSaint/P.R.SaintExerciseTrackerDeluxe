@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const databaseUrl = "workout";
-const collections = ["exercise"];
+const collections = ["workouts"];
 
 const db = mongojs(databaseUrl, collections);
 
@@ -55,6 +55,7 @@ app.get("/api/workouts", (req, res) => {
   });
 });
 
+
 // app.get("/find/:id", (req, res) => {
 //   db.notes.findOne(
 //     {
@@ -70,27 +71,34 @@ app.get("/api/workouts", (req, res) => {
 //   );
 // });
 
-// app.post("/update/:id", (req, res) => {
-//   db.notes.update(
-//     {
-//       _id: mongojs.ObjectId(req.params.id)
-//     },
-//     {
-//       $set: {
-//         title: req.body.title,
-//         note: req.body.note,
-//         modified: Date.now()
-//       }
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     }
-//   );
-// });
+app.put("/api/workouts/:id", (req, res) => {
+    console.log(req.body);
+  db.workouts.update(
+    {
+      _id: mongojs.ObjectId(req.params.id)
+    },
+    {
+      $push: 
+          {
+      exercises:{
+        type: req.body.type,
+        name: req.body.name,
+        distance: req.body.distance,
+        duration: req.body.duration,
+        weight: req.body.weight,
+        sets: req.body.sets,
+        reps: req.body.reps,
+        },
+    }},
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    }
+  );
+});
 
 // app.delete("/delete/:id", (req, res) => {
 //   db.notes.remove(
