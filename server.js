@@ -61,20 +61,22 @@ app.get("/api/workouts", (req, res) => {
 });
 
 
-// app.get("/apit/workouts/range", (req, res) => {
-//   db.workouts.aggregate(
-//     {
-//       day: {$range: []}
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     }
-//   );
-// });
+app.get("/api/workouts/range", (req, res) => {
+  db.workouts.aggregate([
+    {
+  $addFields:{
+      totalDuration: { $sum: "$exercises.duration"},
+  }
+}]).sort({_id:-1}).limit(7,
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    }
+  );
+});
 
 app.put("/api/workouts/:id", (req, res) => {
     // console.log(req.body);
