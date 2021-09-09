@@ -46,7 +46,12 @@ app.post("/api/workouts", (req, res) => {
 });
 
 app.get("/api/workouts", (req, res) => {
-  db.workouts.find({}, (error, data) => {
+  db.workouts.aggregate([
+      {
+    $addFields:{
+        totalDuration: { $sum: "$exercises.duration"},
+    }
+  }], (error, data) => {
     if (error) {
       res.send(error);
     } else {
@@ -56,10 +61,10 @@ app.get("/api/workouts", (req, res) => {
 });
 
 
-// app.get("/find/:id", (req, res) => {
-//   db.notes.findOne(
+// app.get("/apit/workouts/range", (req, res) => {
+//   db.workouts.aggregate(
 //     {
-//       _id: mongojs.ObjectId(req.params.id)
+//       day: {$range: []}
 //     },
 //     (error, data) => {
 //       if (error) {
