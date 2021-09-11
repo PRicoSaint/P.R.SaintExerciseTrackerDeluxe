@@ -1,6 +1,5 @@
 // Sets up and defines requirements
 const express = require("express");
-// const mongojs = require("mongojs");
 const logger = require("morgan");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -22,15 +21,6 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-// const databaseUrl = "workout";
-// const collections = ["workouts"];
-
-// const Workout = mongojs(databaseUrl, collections);
-
-// Workout.on("error", error => {
-//   console.log("Database Error:", error);
-// });
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "./public/index.html"));
 });
@@ -44,8 +34,7 @@ res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
 app.post("/api/workouts", (req, res) => {
-  console.log("this is line 47" + req.body);
-//   const wk = new Workout();
+//   console.log("this is line 47" + req.body);
   Workout.create({})
   .then(workout => {
     console.log(workout);

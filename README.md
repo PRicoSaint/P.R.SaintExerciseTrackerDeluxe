@@ -51,12 +51,11 @@
   Github Repository: https://github.com/PRicoSaint/P.R.SaintExerciseTrackerDeluxe
 
   Deployed Site here: 
-  https://PRicoSaint.github.io/P.R.SaintExerciseTrackerDeluxe/
+  https://stormy-citadel-59650.herokuapp.com/
 
   Screenshot:
   
-<!-- ![P.R.SaintExerciseTrackerDeluxe](./assets/images/P.R.SaintExerciseTrackerDeluxe.gif) -->
-Screenshot will be found here
+![P.R.SaintExerciseTrackerDeluxe](FitnessTracker.gif)
 
   
   ## Technologies-Used:
