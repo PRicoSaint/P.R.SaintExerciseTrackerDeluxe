@@ -3,7 +3,7 @@
 
   ## Description:
 
-    This app will help you reach your fitness goals! It is a basic app to track your workouts and see your progress. Create new workouts by adding exercises into them. Each exercise can be either cardio or resistance focused. You can then add duration, weight, reps and sets. Finally, once complete, the workour can be viewed in the dashboard. here you will be able to see weight and duration over time.
+This app will help you reach your fitness goals! It is a basic app to track your workouts and see your progress. Create new workouts by adding exercises into them. Each exercise can be either cardio or resistance focused. You can then add duration, weight, reps and sets. Finally, once complete, the workour can be viewed in the dashboard. here you will be able to see weight and duration over time.
 
   ## Table of Contents:
   * [Description](#Description)
