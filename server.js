@@ -1,10 +1,10 @@
 // Sets up and defines requirements
 const express = require("express");
-const mongojs = require("mongojs");
+// const mongojs = require("mongojs");
 const logger = require("morgan");
 const path = require("path");
 const mongoose = require("mongoose");
-
+const Workout = require("./models");
 
 mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/workout', {
   useNewUrlParser: true,
@@ -22,14 +22,14 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const databaseUrl = "workout";
-const collections = ["workouts"];
+// const databaseUrl = "workout";
+// const collections = ["workouts"];
 
-const db = mongojs(databaseUrl, collections);
+// const Workout = mongojs(databaseUrl, collections);
 
-db.on("error", error => {
-  console.log("Database Error:", error);
-});
+// Workout.on("error", error => {
+//   console.log("Database Error:", error);
+// });
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "./public/index.html"));
@@ -44,19 +44,21 @@ res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
 app.post("/api/workouts", (req, res) => {
-  console.log(req.body);
-
-  db.workouts.insert({day: Date.now()}, (error, data) => {
-    if (error) {
-      res.send(error);
-    } else {
-      res.send(data);
-    }
+  console.log("this is line 47" + req.body);
+//   const wk = new Workout();
+  Workout.create({})
+  .then(workout => {
+    console.log(workout);
+    res.json(workout)
+  })
+  .catch(({ message }) => {
+    console.log(message);
+    res.json(message);
   });
 });
 
 app.get("/api/workouts", (req, res) => {
-  db.workouts.aggregate([
+  Workout.aggregate([
       {
     $addFields:{
         totalDuration: { $sum: "$exercises.duration"},
@@ -72,26 +74,26 @@ app.get("/api/workouts", (req, res) => {
 
 
 app.get("/api/workouts/range", (req, res) => {
-  db.workouts.aggregate([
-    {
-  $addFields:{
-      totalDuration: { $sum: "$exercises.duration"},
-  }
-}]).sort({_id:-1}).limit(7,
-    (error, data) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send(data);
-      }
-    }
-  );
+    Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: "$exercises.duration" },
+            }
+        }]).sort({ _id: -1 }).limit(7)
+        .then(lastSevenWorkouts => {
+            console.log(lastSevenWorkouts);
+            res.json(lastSevenWorkouts)
+        })
+        .catch(({ message }) => {
+            console.log(message);
+            res.json(message);
+        });
 });
 
 app.put("/api/workouts/:id", (req, res) => {
-  db.workouts.update(
+  Workout.updateOne(
     {
-      _id: mongojs.ObjectId(req.params.id)
+      _id: req.params.id
     },
     {
       $push: 
