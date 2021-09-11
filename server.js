@@ -4,6 +4,14 @@ const mongojs = require("mongojs");
 const logger = require("morgan");
 const path = require("path");
 
+
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/workout', {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+});
+
 const app = express();
 
 app.use(logger("dev"));
