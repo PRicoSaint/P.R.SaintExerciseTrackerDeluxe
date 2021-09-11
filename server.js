@@ -3,7 +3,7 @@ const express = require("express");
 const mongojs = require("mongojs");
 const logger = require("morgan");
 const path = require("path");
-const mongoose = require("moongoose");
+const mongoose = require("mongoose");
 
 
 mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/workout', {
