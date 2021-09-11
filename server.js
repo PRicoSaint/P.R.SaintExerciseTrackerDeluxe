@@ -1,3 +1,4 @@
+// Sets up and defines requirements
 const express = require("express");
 const mongojs = require("mongojs");
 const logger = require("morgan");
@@ -79,7 +80,6 @@ app.get("/api/workouts/range", (req, res) => {
 });
 
 app.put("/api/workouts/:id", (req, res) => {
-    // console.log(req.body);
   db.workouts.update(
     {
       _id: mongojs.ObjectId(req.params.id)
@@ -106,31 +106,6 @@ app.put("/api/workouts/:id", (req, res) => {
     }
   );
 });
-
-// app.delete("/delete/:id", (req, res) => {
-//   db.notes.remove(
-//     {
-//       _id: mongojs.ObjectID(req.params.id)
-//     },
-//     (error, data) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.send(data);
-//       }
-//     }
-//   );
-// });
-
-// app.delete("/clearall", (req, res) => {
-//   db.notes.remove({}, (error, response) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.send(response);
-//     }
-//   });
-// });
 
 app.listen(3000, () => {
   console.log("App running on port 3000!");
