@@ -25,7 +25,7 @@ async function initExercise() {
   if (location.search.split("=")[1] === undefined) {
     console.log("Line 24 " + location.search.split("=")[1]);
     workout = await API.createWorkout()
-    console.log("This is line 26 in"+ workout);
+    console.log("This is line 26 in" + workout);
   }
   if (workout) {
     location.search = "?id=" + workout._id;
