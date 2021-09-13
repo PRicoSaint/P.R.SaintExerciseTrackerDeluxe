@@ -1,3 +1,4 @@
+// This script file will obtain data from mongodb and display information on graphs.
 function calculateTotalWeight(data) {
   const totals = [];
 

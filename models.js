@@ -1,3 +1,4 @@
+// Sets up models to be used in the database. Set up using mongoose to connect to mongoDB
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

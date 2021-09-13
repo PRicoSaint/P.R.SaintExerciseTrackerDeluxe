@@ -1,3 +1,4 @@
+// Script for tracker page. Last workout is chosen and data from it is added and displayed on screen.
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
@@ -70,7 +71,7 @@ function renderWorkoutSummary(summary) {
     container.appendChild(p);
   });
 }
-
+// If no previous workout exists (empty database), this will display.
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");

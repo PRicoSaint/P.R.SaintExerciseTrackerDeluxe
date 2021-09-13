@@ -1,3 +1,4 @@
+// This script file handles the logic behind the input of the exercise to be added to the workout. It then sends this information to back end, to be added to the database.
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");
@@ -17,6 +18,7 @@ const newWorkout = document.querySelector(".new-workout")
 let workoutType = null;
 let shouldNavigateAway = false;
 
+// If no workout exists, a new one will be created.
 async function initExercise() {
   let workout;
 

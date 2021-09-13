@@ -1,3 +1,4 @@
+// This script handles the communications between. the front end to the back end.
 const API = {
   async getLastWorkout() {
     let res;

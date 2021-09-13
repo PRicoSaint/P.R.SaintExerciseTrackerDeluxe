@@ -1,3 +1,4 @@
+// Use this js file to preseed data into the database to see as an example. Not required for general app usage.
 const mongoose = require('mongoose');
 const db = require('../models');
 
